@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PV White Creator // Matrix Edition</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🟢</text></svg>">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      background: #0D0208;
+      color: #00FF41;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Digital Rain Canvas */
+    #rain-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Main Container */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 32px 24px;
+      border: 1px solid rgba(0, 255, 65, 0.15);
+      border-radius: 4px;
+      background: rgba(0, 255, 65, 0.02);
+      position: relative;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.015) 2px,
+        rgba(0, 255, 65, 0.015) 4px
+      );
+      pointer-events: none;
+      border-radius: 4px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: normal;
+      color: #00FF41;
+      text-shadow: 0 0 10px #00FF41, 0 0 20px rgba(0, 255, 65, 0.3);
+      letter-spacing: 4px;
+      margin-bottom: 4px;
+    }
+
+    .header .subtitle {
+      font-size: 14px;
+      color: #008F11;
+      letter-spacing: 2px;
+    }
+
+    /* Panel */
+    .panel {
+      border: 1px solid rgba(0, 255, 65, 0.2);
+      border-radius: 4px;
+      background: rgba(0, 255, 65, 0.03);
+      padding: 32px 28px;
+      position: relative;
+      flex: 1;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.01) 2px,
+        rgba(0, 255, 65, 0.01) 4px
+      );
+      pointer-events: none;
+      border-radius: 4px;
+    }
+
+    /* Input Section */
+    .input-label {
+      font-size: 12px;
+      color: #008F11;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .textarea-wrap {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .textarea-wrap::before {
+      content: '>';
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      color: #00FF41;
+      font-size: 16px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 14px 14px 14px 32px;
+      background: rgba(0, 13, 2, 0.8);
+      border: 1px solid rgba(0, 255, 65, 0.3);
+      border-radius: 4px;
+      color: #00FF41;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    textarea::placeholder {
+      color: rgba(0, 143, 17, 0.5);
+    }
+
+    textarea:focus {
+      border-color: #00FF41;
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), inset 0 0 15px rgba(0, 255, 65, 0.05);
+    }
+
+    /* Request Button */
+    .btn-request {
+      display: block;
+      width: 100%;
+      padding: 16px 32px;
+      background: #00FF41;
+      color: #0D0208;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-shadow: none;
+    }
+
+    .btn-request:hover:not(:disabled) {
+      background: #33FF66;
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.4), 0 0 40px rgba(0, 255, 65, 0.15);
+    }
+
+    .btn-request:disabled {
+      background: #003B00;
+      color: #008F11;
+      cursor: not-allowed;
+    }
+
+    /* Loading State */
+    .loading-section {
+      display: none;
+      margin-top: 24px;
+      text-align: center;
+    }
+
+    .loading-section.active {
+      display: block;
+    }
+
+    .loading-text {
+      font-size: 14px;
+      color: #00FF41;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 3px;
+      background: rgba(0, 255, 65, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: linear-gradient(90deg, #003B00, #00FF41, #003B00);
+      background-size: 200% 100%;
+      animation: progressSlide 1.5s infinite linear;
+      border-radius: 2px;
+    }
+
+    @keyframes progressSlide {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Output Section */
+    .output-section {
+      display: none;
+      margin-top: 28px;
+    }
+
+    .output-section.active {
+      display: block;
+      animation: slideDown 0.4s ease-out;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0, 255, 65, 0.15);
+    }
+
+    .output-header span {
+      font-size: 12px;
+      color: #008F11;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .btn-copy {
+      padding: 6px 16px;
+      background: transparent;
+      border: 1px solid rgba(0, 255, 65, 0.4);
+      color: #00FF41;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      border-radius: 3px;
+      transition: all 0.3s;
+    }
+
+    .btn-copy:hover {
+      background: rgba(0, 255, 65, 0.1);
+      border-color: #00FF41;
+      box-shadow: 0 0 10px rgba(0, 255, 65, 0.2);
+    }
+
+    .btn-copy.copied {
+      background: rgba(0, 255, 65, 0.15);
+      border-color: #00FF41;
+    }
+
+    .code-block {
+      background: rgba(0, 13, 2, 0.9);
+      border: 1px solid rgba(0, 255, 65, 0.15);
+      border-radius: 4px;
+      padding: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #008F11;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    .code-block::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .code-block::-webkit-scrollbar-track {
+      background: rgba(0, 255, 65, 0.05);
+    }
+
+    .code-block::-webkit-scrollbar-thumb {
+      background: rgba(0, 255, 65, 0.2);
+      border-radius: 3px;
+    }
+
+    /* Error */
+    .error-section {
+      display: none;
+      margin-top: 24px;
+      padding: 16px 20px;
+      border: 1px solid rgba(255, 50, 50, 0.4);
+      border-radius: 4px;
+      background: rgba(255, 50, 50, 0.05);
+    }
+
+    .error-section.active {
+      display: block;
+      animation: slideDown 0.4s ease-out;
+    }
+
+    .error-section p {
+      color: #FF3232;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .error-section .error-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: rgba(255, 50, 50, 0.7);
+    }
+
+    /* Footer */
+    .app-footer {
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 24px;
+    }
+
+    .app-footer p {
+      font-size: 11px;
+      color: #003B00;
+      letter-spacing: 1px;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: none;
+      margin-top: 12px;
+      font-size: 11px;
+      color: #003B00;
+      letter-spacing: 1px;
+    }
+
+    .stats-bar.active {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .container { padding: 20px 12px; }
+      .header h1 { font-size: 20px; letter-spacing: 2px; }
+      .panel { padding: 20px 16px; }
+      textarea { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Digital Rain Canvas -->
+  <canvas id="rain-canvas"></canvas>
+
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>PV WHITE CREATOR</h1>
+      <p class="subtitle">// matrix edition</p>
+    </div>
+
+    <!-- Main Panel -->
+    <div class="panel">
+      <!-- Input -->
+      <div class="input-label">// enter your request</div>
+      <div class="textarea-wrap">
+        <textarea
+          id="prompt-input"
+          placeholder="Create a page for Memory Revitalizer that helps with improving cognitive function..."
+          rows="4"
+        ></textarea>
+      </div>
+
+      <button id="btn-request" class="btn-request" onclick="handleRequest()">
+        &#9654; REQUEST
+      </button>
+
+      <!-- Loading -->
+      <div id="loading-section" class="loading-section">
+        <p class="loading-text">GENERATING // PLEASE WAIT...</p>
+        <p id="loading-timer" style="font-size:12px; color:#008F11; letter-spacing:1px; margin-bottom:12px;">ELAPSED: 0s</p>
+        <div class="progress-bar">
+          <div class="progress-bar-inner"></div>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div id="error-section" class="error-section">
+        <p class="error-label">// error</p>
+        <p id="error-message"></p>
+      </div>
+
+      <!-- Output -->
+      <div id="output-section" class="output-section">
+        <div class="output-header">
+          <span>// output &mdash; html ready</span>
+          <button id="btn-copy" class="btn-copy" onclick="handleCopy()">COPY</button>
+        </div>
+        <pre class="code-block" id="code-output"></pre>
+        <div id="stats-bar" class="stats-bar">
+          <span id="stat-size"></span>
+          <span id="stat-time"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="app-footer">
+      <p>PV WHITE CREATOR v1.0 // SCHM DIGITAL LTDA</p>
+    </div>
+  </div>
+
+  <script>
+    // ============ DIGITAL RAIN ============
+    const canvas = document.getElementById('rain-canvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789';
+    const fontSize = 14;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
+
+    function drawRain() {
+      ctx.fillStyle = 'rgba(13, 2, 8, 0.04)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00FF41';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.globalAlpha = 0.15 + Math.random() * 0.1;
+        ctx.fillText(text, x, y);
+        ctx.globalAlpha = 1;
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawRain, 50);
+
+    window.addEventListener('resize', () => {
+      columns = Math.floor(canvas.width / fontSize);
+      drops = Array(columns).fill(1);
+    });
+
+    // ============ APP LOGIC ============
+    const promptInput = document.getElementById('prompt-input');
+    const btnRequest = document.getElementById('btn-request');
+    const loadingSection = document.getElementById('loading-section');
+    const errorSection = document.getElementById('error-section');
+    const errorMessage = document.getElementById('error-message');
+    const outputSection = document.getElementById('output-section');
+    const codeOutput = document.getElementById('code-output');
+    const btnCopy = document.getElementById('btn-copy');
+    const statsBar = document.getElementById('stats-bar');
+    const statSize = document.getElementById('stat-size');
+    const statTime = document.getElementById('stat-time');
+
+    let generatedHtml = '';
+    let loadingInterval = null;
+    const loadingTimer = document.getElementById('loading-timer');
+
+    async function handleRequest() {
+      const prompt = promptInput.value.trim();
+      if (!prompt) {
+        promptInput.focus();
+        return;
+      }
+
+      // Reset state
+      errorSection.classList.remove('active');
+      outputSection.classList.remove('active');
+      statsBar.classList.remove('active');
+      loadingSection.classList.add('active');
+      btnRequest.disabled = true;
+      btnRequest.textContent = 'GENERATING...';
+
+      const startTime = Date.now();
+      loadingInterval = setInterval(() => {
+        const s = Math.floor((Date.now() - startTime) / 1000);
+        loadingTimer.textContent = 'ELAPSED: ' + s + 's // THIS MAY TAKE UP TO 3-5 MIN';
+      }, 1000);
+
+      try {
+        const res = await fetch('/api/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ prompt })
+        });
+
+        const data = await res.json();
+
+        if (!res.ok || data.error) {
+          throw new Error(data.error || 'Unknown error occurred.');
+        }
+
+        generatedHtml = data.html;
+        const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
+        const sizeKb = (new Blob([generatedHtml]).size / 1024).toFixed(1);
+
+        // Show output
+        codeOutput.textContent = generatedHtml;
+        outputSection.classList.add('active');
+        statsBar.classList.add('active');
+        statSize.textContent = 'SIZE: ' + sizeKb + ' KB';
+        statTime.textContent = 'TIME: ' + elapsed + 's';
+
+      } catch (err) {
+        errorMessage.textContent = err.message;
+        errorSection.classList.add('active');
+      } finally {
+        clearInterval(loadingInterval);
+        loadingSection.classList.remove('active');
+        btnRequest.disabled = false;
+        btnRequest.innerHTML = '&#9654; REQUEST';
+      }
+    }
+
+    async function handleCopy() {
+      if (!generatedHtml) return;
+
+      try {
+        await navigator.clipboard.writeText(generatedHtml);
+        btnCopy.textContent = 'COPIED!';
+        btnCopy.classList.add('copied');
+        setTimeout(() => {
+          btnCopy.textContent = 'COPY';
+          btnCopy.classList.remove('copied');
+        }, 2000);
+      } catch {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = generatedHtml;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btnCopy.textContent = 'COPIED!';
+        btnCopy.classList.add('copied');
+        setTimeout(() => {
+          btnCopy.textContent = 'COPY';
+          btnCopy.classList.remove('copied');
+        }, 2000);
+      }
+    }
+
+    // Enter key to submit (Ctrl+Enter)
+    promptInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        handleRequest();
+      }
+    });
+  </script>
+
+</body>
+</html>

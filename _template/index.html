@@ -253,7 +253,7 @@
   </section>
 
   <!-- ========== SECTION 6: FAQ ========== -->
-  <section style="background: #F9FAFB; padding: 80px 24px;">
+  <section id="faq" style="background: #F9FAFB; padding: 80px 24px;">
     <div style="max-width: 720px; margin: 0 auto;">
       <div style="text-align: center; margin-bottom: 48px;">
         <h2 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 36px; color: #292D34; margin-bottom: 12px;">
@@ -333,16 +333,16 @@
         <div style="flex: 1;">
           <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; color: #FFFFFF; margin-bottom: 16px;">Legal</h3>
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="./terms-of-use/" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Terms of Use</a>
-            <a href="./privacy-policy/" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Privacy Policy</a>
-            <a href="./refund-policy/" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Refund Policy</a>
+            <a href="#" onclick="openModal('terms'); return false;" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Terms of Use</a>
+            <a href="#" onclick="openModal('privacy'); return false;" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Privacy Policy</a>
+            <a href="#" onclick="openModal('refund'); return false;" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Refund Policy</a>
           </div>
         </div>
         <!-- Column 3: Support -->
         <div style="flex: 1;">
           <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; color: #FFFFFF; margin-bottom: 16px;">Support</h3>
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a href="./support/" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Contact Us</a>
+            <a href="#" onclick="openModal('support'); return false;" style="font-size: 13px; color: #49CCF9; text-decoration: none;">Contact Us</a>
             <a href="mailto:suporte@divinehealing.blog" style="font-size: 13px; color: #49CCF9; text-decoration: none;">suporte@divinehealing.blog</a>
           </div>
         </div>
@@ -364,6 +364,302 @@
       </div>
     </div>
   </footer>
+
+  <!-- ========== MODAL: TERMS OF USE ========== -->
+  <div id="modal-terms" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:40px 24px;">
+    <div style="max-width:720px; margin:0 auto; background:#FFFFFF; border-radius:16px; padding:48px 36px; position:relative;">
+      <button onclick="closeModal('terms')" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#9CA3AF; font-family:sans-serif;">&#10005;</button>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:32px; color:#292D34; margin-bottom:8px;">Terms of Use</h1>
+      <p style="font-size:14px; color:#9CA3AF; margin-bottom:32px;">Last updated: [CURRENT_DATE]</p>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">1. Acceptance of Terms</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">By accessing and using this website and purchasing [PRODUCT_NAME], you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, please do not use our website or purchase our products.</p>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">These terms apply to all visitors, users, and customers of this website. We reserve the right to update these terms at any time, and your continued use of the site constitutes acceptance of any changes.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">2. Intellectual Property</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">All content on this website, including but not limited to text, graphics, logos, images, and digital products, is the property of Schm Digital LTDA and is protected by applicable intellectual property laws.</p>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">You may not reproduce, distribute, modify, create derivative works from, publicly display, or exploit any of our content without prior written permission from Schm Digital LTDA.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">3. User License</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">Upon purchasing [PRODUCT_NAME], you are granted a limited, non-exclusive, non-transferable license to access and use the digital content for personal, non-commercial purposes only.</p>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">This license does not permit you to: resell or redistribute the product; share your access credentials with others; use the content for commercial purposes without authorization; or claim authorship of any part of the content.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">4. Disclaimer of Warranties</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">[PRODUCT_NAME] is provided "as is" without any warranties, express or implied. We do not guarantee that the content will meet your specific expectations or produce particular results.</p>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">Our products are educational in nature. Individual results may vary based on personal effort, circumstances, and other factors. We make no representations regarding the accuracy, completeness, or suitability of the information provided.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">5. Limitation of Liability</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">To the fullest extent permitted by law, Schm Digital LTDA shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of our website or products.</p>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">Our total liability for any claim arising from these terms or your use of our products shall not exceed the amount you paid for the product in question.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">6. Governing Law</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">These Terms of Use shall be governed by and construed in accordance with the laws of the Federative Republic of Brazil. Any disputes arising from these terms shall be subject to the exclusive jurisdiction of the courts of Maringa, Parana, Brazil.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">7. Contact Information</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">If you have any questions about these Terms of Use, please contact us:</p>
+        <div style="background:#F9FAFB; border-radius:8px; padding:20px; font-size:14px; color:#4B5563; line-height:1.8;">
+          <strong>Schm Digital LTDA</strong><br>
+          CNPJ: 53.085.166/0001-14<br>
+          Avenida Alexandre Rasgulaeff, Doutor 4370, Slj Box Virtual 363<br>
+          Jardim Imperial II, Maringa - PR, ZIP 87023-060, Brazil<br>
+          Email: <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL: PRIVACY POLICY ========== -->
+  <div id="modal-privacy" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:40px 24px;">
+    <div style="max-width:720px; margin:0 auto; background:#FFFFFF; border-radius:16px; padding:48px 36px; position:relative;">
+      <button onclick="closeModal('privacy')" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#9CA3AF; font-family:sans-serif;">&#10005;</button>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:32px; color:#292D34; margin-bottom:8px;">Privacy Policy</h1>
+      <p style="font-size:14px; color:#9CA3AF; margin-bottom:32px;">Last updated: [CURRENT_DATE]</p>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">1. Information We Collect</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">When you visit our website or purchase [PRODUCT_NAME], we may collect the following types of information:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;"><strong>Personal Information:</strong> Name, email address, and billing information provided during purchase.</li>
+          <li style="margin-bottom:6px;"><strong>Usage Data:</strong> Pages visited, time spent on site, browser type, and device information.</li>
+          <li style="margin-bottom:6px;"><strong>Communication Data:</strong> Any information you provide when contacting our support team.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">2. How We Use Your Information</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">We use the collected information for the following purposes:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;">To process and deliver your purchase of [PRODUCT_NAME].</li>
+          <li style="margin-bottom:6px;">To communicate with you regarding your order or support requests.</li>
+          <li style="margin-bottom:6px;">To improve our website, products, and services.</li>
+          <li style="margin-bottom:6px;">To comply with legal obligations and prevent fraudulent activity.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">3. Data Security</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure, and we cannot guarantee absolute security.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">4. Third-Party Services</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">We may use third-party services to process payments, deliver products, and analyze website traffic. These services include but are not limited to:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;"><strong>Payment Processors:</strong> To securely handle transactions.</li>
+          <li style="margin-bottom:6px;"><strong>Analytics Services:</strong> To understand website usage patterns.</li>
+          <li style="margin-bottom:6px;"><strong>Email Services:</strong> To deliver purchase confirmations and support communications.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">5. Cookies</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">Our website may use cookies and similar tracking technologies to enhance your browsing experience. You can control cookie settings through your browser preferences. Disabling cookies may affect some functionality of our website.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">6. Your Rights</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">Depending on your jurisdiction, you may have the following rights:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;"><strong>Access:</strong> Request a copy of the personal data we hold about you.</li>
+          <li style="margin-bottom:6px;"><strong>Correction:</strong> Request correction of inaccurate personal data.</li>
+          <li style="margin-bottom:6px;"><strong>Deletion:</strong> Request deletion of your personal data where applicable.</li>
+          <li style="margin-bottom:6px;"><strong>Portability:</strong> Request transfer of your data to another service provider.</li>
+        </ul>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">To exercise any of these rights, please contact us at <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">7. Data Retention</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">We retain your personal data only for as long as necessary to fulfill the purposes outlined in this policy, or as required by law.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">8. Changes to This Policy</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">9. Contact Us</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">If you have any questions about this Privacy Policy, please contact us:</p>
+        <div style="background:#F9FAFB; border-radius:8px; padding:20px; font-size:14px; color:#4B5563; line-height:1.8;">
+          <strong>Schm Digital LTDA</strong><br>
+          CNPJ: 53.085.166/0001-14<br>
+          Avenida Alexandre Rasgulaeff, Doutor 4370, Slj Box Virtual 363<br>
+          Jardim Imperial II, Maringa - PR, ZIP 87023-060, Brazil<br>
+          Email: <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL: REFUND POLICY ========== -->
+  <div id="modal-refund" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:40px 24px;">
+    <div style="max-width:720px; margin:0 auto; background:#FFFFFF; border-radius:16px; padding:48px 36px; position:relative;">
+      <button onclick="closeModal('refund')" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#9CA3AF; font-family:sans-serif;">&#10005;</button>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:32px; color:#292D34; margin-bottom:8px;">Refund Policy</h1>
+      <p style="font-size:14px; color:#9CA3AF; margin-bottom:32px;">Last updated: [CURRENT_DATE]</p>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">1. Our Satisfaction Guarantee</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">We want you to be completely satisfied with your purchase of [PRODUCT_NAME]. We stand behind the quality of our educational content and offer a straightforward refund policy to ensure your confidence in your purchase.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">2. Eligibility for Refund</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">You are eligible for a refund if:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;">Your request is made within the refund window (see below).</li>
+          <li style="margin-bottom:6px;">You provide your purchase details (order number, email used for purchase).</li>
+          <li style="margin-bottom:6px;">This is your first refund request for this product.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">3. Refund Window</h2>
+        <div style="background:#F9FAFB; border-left:3px solid #7B68EE; border-radius:8px; padding:16px 20px; margin-bottom:10px;">
+          <p style="font-size:16px; color:#292D34; font-weight:600;">You have <strong>7 calendar days</strong> from the date of purchase to request a refund.</p>
+        </div>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7;">Requests made after this period may not be eligible for a refund, except where required by applicable consumer protection laws.</p>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">4. How to Request a Refund</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">To request a refund, please follow these steps:</p>
+        <ol style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;">Send an email to <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a> with the subject line "Refund Request - [PRODUCT_NAME]".</li>
+          <li style="margin-bottom:6px;">Include your full name, email address used for purchase, and order number.</li>
+          <li style="margin-bottom:6px;">Briefly describe the reason for your refund request (optional but helpful).</li>
+        </ol>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">5. Processing Timeline</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">Once we receive your refund request:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;"><strong>Acknowledgment:</strong> We will confirm receipt within 1-2 business days.</li>
+          <li style="margin-bottom:6px;"><strong>Processing:</strong> Approved refunds are processed within 3-5 business days.</li>
+          <li style="margin-bottom:6px;"><strong>Credit:</strong> The refund may take an additional 5-10 business days to appear on your statement.</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom:28px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">6. Exceptions</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">Refunds may not be granted in the following circumstances:</p>
+        <ul style="font-size:15px; color:#4B5563; line-height:1.7; padding-left:24px;">
+          <li style="margin-bottom:6px;">The request is made after the 7-day refund window has expired.</li>
+          <li style="margin-bottom:6px;">Evidence of abuse of the refund policy.</li>
+          <li style="margin-bottom:6px;">The product was purchased through an unauthorized third-party reseller.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:20px; color:#292D34; margin-bottom:10px;">7. Contact Us</h2>
+        <p style="font-size:15px; color:#4B5563; line-height:1.7; margin-bottom:10px;">If you have any questions about our Refund Policy, please contact us:</p>
+        <div style="background:#F9FAFB; border-radius:8px; padding:20px; font-size:14px; color:#4B5563; line-height:1.8;">
+          <strong>Schm Digital LTDA</strong><br>
+          CNPJ: 53.085.166/0001-14<br>
+          Avenida Alexandre Rasgulaeff, Doutor 4370, Slj Box Virtual 363<br>
+          Jardim Imperial II, Maringa - PR, ZIP 87023-060, Brazil<br>
+          Email: <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL: SUPPORT / CONTACT ========== -->
+  <div id="modal-support" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:1000; overflow-y:auto; padding:40px 24px;">
+    <div style="max-width:720px; margin:0 auto; background:#FFFFFF; border-radius:16px; padding:48px 36px; position:relative;">
+      <button onclick="closeModal('support')" style="position:absolute; top:16px; right:16px; background:none; border:none; font-size:24px; cursor:pointer; color:#9CA3AF; font-family:sans-serif;">&#10005;</button>
+      <h1 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; font-size:32px; color:#292D34; margin-bottom:8px;">Support</h1>
+      <p style="font-size:16px; color:#6B7280; margin-bottom:32px;">We're here to help. Reach out to us and we'll get back to you as soon as possible.</p>
+
+      <!-- Contact Info Cards -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px; margin-bottom:32px;">
+        <div style="background:#F9FAFB; border-radius:12px; padding:24px; text-align:center;">
+          <div style="width:44px; height:44px; background:linear-gradient(135deg,#6647F0,#0091FF); border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">
+            <span style="font-size:20px;">📧</span>
+          </div>
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:16px; color:#292D34; margin-bottom:6px;">Email Us</h3>
+          <a href="mailto:suporte@divinehealing.blog" style="font-size:14px; color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>
+        </div>
+        <div style="background:#F9FAFB; border-radius:12px; padding:24px; text-align:center;">
+          <div style="width:44px; height:44px; background:linear-gradient(135deg,#6647F0,#0091FF); border-radius:12px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px;">
+            <span style="font-size:20px;">🕐</span>
+          </div>
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:16px; color:#292D34; margin-bottom:6px;">Business Hours</h3>
+          <p style="font-size:14px; color:#6B7280;">Monday - Friday<br>9:00 AM - 5:00 PM (BRT)</p>
+        </div>
+      </div>
+
+      <!-- FAQ Link -->
+      <div style="background:linear-gradient(135deg,rgba(102,71,240,0.05),rgba(0,145,255,0.05)); border:1px solid rgba(123,104,238,0.2); border-radius:12px; padding:20px; margin-bottom:32px; text-align:center;">
+        <p style="font-size:14px; color:#4B5563; margin-bottom:6px;">Looking for quick answers?</p>
+        <a href="#faq" onclick="closeModal('support')" style="font-size:15px; color:#7B68EE; text-decoration:none; font-weight:600;">Check our Frequently Asked Questions →</a>
+      </div>
+
+      <!-- Contact Form -->
+      <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:22px; color:#292D34; margin-bottom:20px;">Send Us a Message</h2>
+      <form action="mailto:suporte@divinehealing.blog" method="POST" enctype="text/plain" style="display:flex; flex-direction:column; gap:16px;">
+        <div>
+          <label style="display:block; font-size:14px; font-weight:500; color:#374151; margin-bottom:6px;">Full Name</label>
+          <input type="text" name="name" required style="width:100%; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-family:'Inter',sans-serif; font-size:15px; color:#292D34; outline:none;" onfocus="this.style.borderColor='#7B68EE'" onblur="this.style.borderColor='#D1D5DB'">
+        </div>
+        <div>
+          <label style="display:block; font-size:14px; font-weight:500; color:#374151; margin-bottom:6px;">Email Address</label>
+          <input type="email" name="email" required style="width:100%; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-family:'Inter',sans-serif; font-size:15px; color:#292D34; outline:none;" onfocus="this.style.borderColor='#7B68EE'" onblur="this.style.borderColor='#D1D5DB'">
+        </div>
+        <div>
+          <label style="display:block; font-size:14px; font-weight:500; color:#374151; margin-bottom:6px;">Subject</label>
+          <select name="subject" style="width:100%; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-family:'Inter',sans-serif; font-size:15px; color:#292D34; background:#FFFFFF; outline:none;" onfocus="this.style.borderColor='#7B68EE'" onblur="this.style.borderColor='#D1D5DB'">
+            <option value="general">General Question</option>
+            <option value="order">Order Issue</option>
+            <option value="refund">Refund Request</option>
+            <option value="technical">Technical Support</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; font-size:14px; font-weight:500; color:#374151; margin-bottom:6px;">Message</label>
+          <textarea name="message" rows="4" required style="width:100%; padding:12px 16px; border:1px solid #D1D5DB; border-radius:8px; font-family:'Inter',sans-serif; font-size:15px; color:#292D34; outline:none; resize:vertical;" onfocus="this.style.borderColor='#7B68EE'" onblur="this.style.borderColor='#D1D5DB'"></textarea>
+        </div>
+        <button type="submit" style="background:linear-gradient(135deg,#6647F0,#0091FF); color:#FFFFFF; font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:16px; padding:16px 36px; border:none; border-radius:12px; cursor:pointer; letter-spacing:0.5px; text-transform:uppercase; box-shadow:0 4px 20px rgba(102,71,240,0.4);">
+          Send Message
+        </button>
+      </form>
+
+      <!-- Company Info -->
+      <div style="margin-top:32px;">
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:22px; color:#292D34; margin-bottom:12px;">Company Information</h2>
+        <div style="background:#F9FAFB; border-radius:8px; padding:20px; font-size:14px; color:#4B5563; line-height:1.8;">
+          <strong>Schm Digital LTDA</strong><br>
+          CNPJ: 53.085.166/0001-14<br>
+          Avenida Alexandre Rasgulaeff, Doutor 4370, Slj Box Virtual 363<br>
+          Jardim Imperial II, Maringa - PR, ZIP 87023-060, Brazil<br>
+          Email: <a href="mailto:suporte@divinehealing.blog" style="color:#49CCF9; text-decoration:none;">suporte@divinehealing.blog</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL SCRIPTS ========== -->
+  <script>
+  function openModal(id){document.getElementById('modal-'+id).style.display='block';document.body.style.overflow='hidden';}
+  function closeModal(id){document.getElementById('modal-'+id).style.display='none';document.body.style.overflow='';}
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){document.querySelectorAll('[id^="modal-"]').forEach(function(m){m.style.display='none';});document.body.style.overflow='';}});
+  </script>
 
 </body>
 </html>
