@@ -61,6 +61,7 @@ When the user says something like _"Create a page for [Product Name] that helps 
 - Shadows: `0 2px 8px rgba(0,0,0,0.08)` for cards
 - Hover shadow: `0 4px 16px rgba(0,0,0,0.12)`
 - Sections alternate between white (`#FFFFFF`) and light gray (`#F9FAFB`) backgrounds
+- **CRITICAL: ALL purchase/CTA buttons MUST be `<a href="[CHECKOUT_URL]" style="...">` tags, NEVER `<button>` elements.** All styling goes inline via the `style` attribute.
 - CTA buttons use gradient: `linear-gradient(135deg, #6647F0, #0091FF)`
 - CTA button text: white, bold, uppercase tracking
 
@@ -100,7 +101,8 @@ When the user says something like _"Create a page for [Product Name] that helps 
 
 ### Section 1: Hero / Headline
 - **Background:** Gradient `linear-gradient(135deg, #292D34, #1a1d23)`
-- **Content:** H1 in white (Plus Jakarta Sans 800), subheadline in `rgba(255,255,255,0.8)`, CTA button with gradient, trust text below button
+- **Content:** H1 in white (Plus Jakarta Sans 800), subheadline in `rgba(255,255,255,0.8)`, CTA as `<a href style>` with gradient, trust text below CTA
+- **CTA:** Must be `<a href="[CHECKOUT_URL]" style="display:inline-block; background:linear-gradient(...); ...">` — never `<button>`
 - **Trust text:** "Instant digital delivery - Satisfaction guaranteed"
 
 ### Section 2: What You'll Receive
@@ -120,7 +122,8 @@ When the user says something like _"Create a page for [Product Name] that helps 
 
 ### Section 5: Pricing
 - **Background:** Charcoal `#292D34`
-- **Content:** Centered white card with: badge ("Limited Offer"), original price crossed, current price in gold, feature list, CTA button, trust badges
+- **Content:** Centered white card with: badge ("Limited Offer"), original price crossed, current price in gold, feature list, CTA as `<a href style>`, trust badges
+- **CTA:** Must be `<a href="[CHECKOUT_URL]" style="display:block; background:linear-gradient(...); ...">` — never `<button>`
 - **Price display:** Gold `#FFC800`, large font, Plus Jakarta Sans 800
 
 ### Section 6: FAQ
